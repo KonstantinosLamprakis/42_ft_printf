@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:41:39 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 12:48:59 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 13:02:45 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ static void	str_revert(char *str)
 	free(temp);
 }
 
-static void	get_hex(unsigned int nbr, int upper_case, char *result)
+static void	get_hex(unsigned int nbr, int is_up_case, char *result)
 {
-	static char	upper_digits[] = "0123456789ABCDEF";
-	static char	lower_digits[] = "0123456789abcdef";
+	static char	up_dig[] = "0123456789ABCDEF";
+	static char	lo_dig[] = "0123456789abcdef";
 
 	if (nbr >= 16)
-		get_hex((nbr / 16), upper_case, result + 1);
-	if (upper_case)
-		*result = upper_digits[nbr % 16];
+		get_hex((nbr / 16), is_up_case, result + 1);
+	if (is_up_case)
+		*result = up_dig[nbr % 16];
 	else
-		*result = lower_digits[nbr % 16];
+		*result = lo_dig[nbr % 16];
 }
 
 static int	count_digits(unsigned int num)
