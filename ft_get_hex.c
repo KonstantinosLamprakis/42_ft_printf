@@ -6,14 +6,14 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:41:39 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 15:23:05 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:04:53 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_digits(unsigned long long num);
-static void	get_hex(unsigned long long nbr, int upper_case, char *result, int is_int);
+static int	count_digits(t_u_long num);
+static void	get_hex(t_u_long nbr, int upper_case, char *result, int is_int);
 static void	str_revert(char *str);
 
 char	*print_ptr(va_list par_list)
@@ -83,7 +83,7 @@ static void	str_revert(char *str)
 	free(temp);
 }
 
-static void	get_hex(unsigned long long nbr, int is_up_case, char *result, int is_int)
+static void	get_hex(t_u_long nbr, int is_up_case, char *result, int is_int)
 {
 	static char	up_dig[] = "0123456789ABCDEF";
 	static char	lo_dig[] = "0123456789abcdef";

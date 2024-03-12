@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 13:03:09 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:04:46 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
+
+typedef unsigned long long	t_u_long;
 
 // declarations of ft_printf.c
 int		ft_printf(const char *format, ...);
