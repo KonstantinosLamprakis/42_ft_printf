@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:41:39 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 13:02:45 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:31:12 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	get_hex(unsigned int nbr, int is_up_case, char *result)
 
 	if (nbr >= 16)
 		get_hex((nbr / 16), is_up_case, result + 1);
+	else
+		result[1] = '\0';
 	if (is_up_case)
 		*result = up_dig[nbr % 16];
 	else
