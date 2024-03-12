@@ -6,15 +6,38 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:41:39 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 14:31:12 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:59:01 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_digits(unsigned int num);
-static void	get_hex(unsigned int nbr, int upper_case, char *result);
+static int	count_digits(unsigned long long num);
+static void	get_hex(unsigned long long nbr, int upper_case, char *result);
 static void	str_revert(char *str);
+
+char	*print_ptr(va_list par_list)
+{
+	int					ch_num;
+	char				*result;
+	void				*ptr_nbr;
+	char				*temp;
+	unsigned long long	nbr;
+
+	ptr_nbr = va_arg(par_list, void *);
+	if (ptr_nbr == NULL)
+		return (ft_strdup("0x0"));
+	nbr = (unsigned long long) ptr_nbr;
+	ch_num = (count_digits(nbr));
+	temp = malloc((count_digits(nbr) + 1) * sizeof(char));
+	if (!temp)
+		return (NULL);
+	get_hex(nbr, 0, temp);
+	str_revert(temp);
+	result = ft_strjoin("0x", temp);
+	free(temp);
+	return (result);
+}
 
 char	*print_x(va_list par_list, char c)
 {
@@ -60,7 +83,7 @@ static void	str_revert(char *str)
 	free(temp);
 }
 
-static void	get_hex(unsigned int nbr, int is_up_case, char *result)
+static void	get_hex(unsigned long long nbr, int is_up_case, char *result)
 {
 	static char	up_dig[] = "0123456789ABCDEF";
 	static char	lo_dig[] = "0123456789abcdef";
@@ -75,7 +98,7 @@ static void	get_hex(unsigned int nbr, int is_up_case, char *result)
 		*result = lo_dig[nbr % 16];
 }
 
-static int	count_digits(unsigned int num)
+static int	count_digits(unsigned long long num)
 {
 	int	result;
 
