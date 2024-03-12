@@ -6,59 +6,13 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:41:39 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 18:04:53 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:22:20 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_digits(t_u_long num);
-static void	get_hex(t_u_long nbr, int upper_case, char *result, int is_int);
-static void	str_revert(char *str);
-
-char	*print_ptr(va_list par_list)
-{
-	int					ch_num;
-	char				*result;
-	void				*ptr_nbr;
-	char				*temp;
-	unsigned long long	nbr;
-
-	ptr_nbr = va_arg(par_list, void *);
-	if (ptr_nbr == NULL)
-		return (ft_strdup("0x0"));
-	nbr = (unsigned long long) ptr_nbr;
-	ch_num = (count_digits(nbr));
-	temp = malloc((count_digits(nbr) + 1) * sizeof(char));
-	if (!temp)
-		return (NULL);
-	get_hex(nbr, 0, temp, 0);
-	str_revert(temp);
-	result = ft_strjoin("0x", temp);
-	free(temp);
-	return (result);
-}
-
-char	*print_x(va_list par_list, char c)
-{
-	int		ch_num;
-	char	*result;
-	int		nbr;
-
-	nbr = va_arg(par_list, ssize_t);
-	ch_num = (count_digits(nbr));
-	result = malloc((count_digits(nbr) + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	if (c == 'x')
-		get_hex(nbr, 0, result, 1);
-	else
-		get_hex(nbr, 1, result, 1);
-	str_revert(result);
-	return (result);
-}
-
-static void	str_revert(char *str)
+void	str_revert(char *str)
 {
 	char	*temp;
 	int		i;
@@ -83,24 +37,31 @@ static void	str_revert(char *str)
 	free(temp);
 }
 
-static void	get_hex(t_u_long nbr, int is_up_case, char *result, int is_int)
+void	get_hex(t_u_long nbr, int is_up_case, char *result, int is_int)
 {
 	static char	up_dig[] = "0123456789ABCDEF";
 	static char	lo_dig[] = "0123456789abcdef";
+	static char	dec_dig[] = "0123456789";
+	t_u_long	base;
 
+	base = 16;
+	if (is_up_case == 10)
+		base = 10;
 	if (is_int)
 		nbr = (unsigned int) nbr;
-	if (nbr >= 16)
-		get_hex((nbr / 16), is_up_case, result + 1, is_int);
+	if (nbr >= base)
+		get_hex((nbr / base), is_up_case, result + 1, is_int);
 	else
 		result[1] = '\0';
-	if (is_up_case)
-		*result = up_dig[nbr % 16];
+	if (is_up_case == 1)
+		*result = up_dig[nbr % base];
+	else if (is_up_case == 10)
+		*result = dec_dig[nbr % base];
 	else
-		*result = lo_dig[nbr % 16];
+		*result = lo_dig[nbr % base];
 }
 
-static int	count_digits(unsigned long long num)
+int	count_digits(t_u_long num, int base)
 {
 	int	result;
 
@@ -110,7 +71,7 @@ static int	count_digits(unsigned long long num)
 	while (num != 0)
 	{
 		result += 1;
-		num /= 16;
+		num /= base;
 	}
 	return (result);
 }
