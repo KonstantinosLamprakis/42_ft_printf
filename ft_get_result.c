@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:42:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 09:04:16 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:57:38 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*get_result(const char *format, int index, va_list par_list)
 		index++;
 	if (format[index] == 's')
 		return (print_str(par_list));
-	else if (format[index] == 'c')
-		return (print_char(par_list));
 	else if (format[index] == 'p')
 		return (print_ptr(par_list));
 	else if (format[index] == 'i' || format[index] == 'd')

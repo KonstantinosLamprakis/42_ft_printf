@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 09:34:59 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:57:04 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 {
 	char	*result_str;
 
-	if (print_percent(format, ind))
+	if (print_percent(format, ind) || print_char(format, ind, par_l))
 	{
 		(*ch_num)++;
 		return (ind);

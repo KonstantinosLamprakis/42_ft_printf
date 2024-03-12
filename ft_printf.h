@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 09:37:48 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:56:36 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_result(const char *format, int index, va_list par_list);
 // declarations of ft_putnbr_base.c
 char	*ft_putnbr_base(int nbr, char *base);
 // declarations of ft_utils_1.c
-char	*print_char(va_list par_list);
+int		print_char(const char *format, int index, va_list par_list);
 char	*print_str(va_list par_list);
 char	*print_i_d(va_list par_list);
 int		print_percent(const char *format, int index);

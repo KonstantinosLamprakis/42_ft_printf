@@ -6,21 +6,35 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 09:37:34 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:56:25 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*print_char(va_list par_list)
+// if is % just print it and return
+int	print_percent(const char *format, int index)
 {
-	char	*result;
+	while (is_included("cspdiuxX%", format[index]) == -1)
+		index++;
+	if (format[index] == '%')
+	{
+		ft_putchar_fd('%', 1);
+		return (1);
+	}
+	return (0);
+}
 
-	result = malloc(sizeof(char));
-	if (!result)
-		return (NULL);
-	result[0] = (char) va_arg(par_list, int);
-	return (result);
+int	print_char(const char *format, int index, va_list par_list)
+{
+	while (is_included("cspdiuxX%", format[index]) == -1)
+		index++;
+	if (format[index] == 'c')
+	{
+		ft_putchar_fd(va_arg(par_list, int), 1);
+		return (1);
+	}
+	return (0);
 }
 
 char	*print_str(va_list par_list)
@@ -36,17 +50,6 @@ char	*print_str(va_list par_list)
 char	*print_i_d(va_list par_list)
 {
 	return (ft_itoa(va_arg(par_list, int)));
-}
-
-// if is % just print it and return
-int	print_percent(const char *format, int index)
-{
-	if (format[index] == '%')
-	{
-		ft_putchar_fd('%', 1);
-		return (1);
-	}
-	return (0);
 }
 
 // checks if c is included on str.
