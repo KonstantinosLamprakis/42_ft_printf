@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 06:34:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:19:20 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:54:25 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ int	get_field_width(const char *format, int index, va_list par_list)
 	int		temp;
 	char	*temp_str;
 
-	while (is_included("cspdiuxX%", format[index]) == -1)
+	while (is_included("cspdiuxX%.", format[index]) == -1)
 	{
-		if (format[index] == '.')
-			return (-1);
-		if (format[index] == '0' && !ft_isdigit(format[index - 1]))
-		{
-			index++;
+		index++;
+		if (format[index - 1] == '0' && !ft_isdigit(format[index - 2]))
 			continue ;
-		}
+		index--;
 		temp = index;
 		while (format[temp] >= '0' && format[temp] <= '9')
 			temp++;
