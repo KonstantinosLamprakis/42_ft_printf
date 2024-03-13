@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 06:34:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 13:28:21 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:26:38 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	get_field_width(const char *format, int index, va_list par_list)
 	return (-1);
 }
 
+// f_width: how many bytes to read
+// if no * or digits, shouldn't read any bytes
+// return 1 if found a '.', 0 otherwise
 int	is_fstop(const char *format, int index, int *f_width, va_list par_list)
 {
 	int	temp;
@@ -57,7 +60,7 @@ int	is_fstop(const char *format, int index, int *f_width, va_list par_list)
 				temp++;
 			if (index < temp)
 			{
-				temp_str = ft_substr(format, index, index - temp);
+				temp_str = ft_substr(format, index, temp - index);
 				*f_width = ft_atoi(temp_str);
 				if (temp_str)
 					free(temp_str);

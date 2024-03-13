@@ -6,11 +6,13 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 14:59:26 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:36:32 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*get_percision(int f_width, char *num);
 
 // if is % just print it and return
 char	*print_percent(void)
@@ -66,11 +68,13 @@ char	*print_i_d(va_list par_list, const char *format, int index)
 	int		num;
 	char	*result;
 	char	*temp;
+	int		f_width;
 
+	is_fstop(format, index, &f_width, par_list);
 	num = va_arg(par_list, int);
 	if (num < 0 || !(is_plus_f(format, index) || is_space_f(format, index)))
-		return (ft_itoa(num));
-	temp = ft_itoa(num);
+		return (get_percision(f_width, ft_itoa(num)));
+	temp = get_percision(f_width, ft_itoa(num));
 	if (!temp)
 		return (NULL);
 	if (is_plus_f(format, index))
@@ -78,6 +82,34 @@ char	*print_i_d(va_list par_list, const char *format, int index)
 	else
 		result = ft_strjoin(" ", temp);
 	free(temp);
+	return (result);
+}
+
+char	*get_percision(int f_width, char *num)
+{
+	int		sign;
+	int		i;
+	char	*zeros;
+	char	*result;
+
+	if (!num)
+		return (num);
+	sign = num[0] == '-';
+	i = f_width - (ft_strlen(num) - sign);
+	if (i <= 0)
+		return (num);
+	zeros = malloc((i + 1 + sign) * sizeof(char));
+	if (!zeros)
+		return (NULL);
+	if (sign)
+		zeros[0] = '-';
+	zeros[i + sign] = '\0';
+	i += sign - 1;
+	while (i >= sign)
+		zeros[i--] = '0';
+	result = ft_strjoin(zeros, num + sign);
+	free(zeros);
+	free(num);
 	return (result);
 }
 
