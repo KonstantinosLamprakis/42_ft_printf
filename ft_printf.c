@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 15:00:10 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:06:30 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	ft_printf(const char *format, ...)
 
 // 	b = 0;
 // 	c = 0;
-// 	c = ft_printf("%.s", NULL);
-// 	b = printf("%.s", NULL);
+// 	// c = ft_printf("%.s", NULL);
+// 	b = printf(" %04d ", -14);
 
 // 	printf("-%d %d-\n", c , b);
 // 	// system("leaks a.out");

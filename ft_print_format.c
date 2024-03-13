@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 13:29:44 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:12:32 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	pr_null(const char *format, int ind, int field_width);
 // ind = current index on format, start from first char after %
 // return the index of last character that got processed
 // ch_num keep score of how many character printed
+// is_null for spesific case that need to print only one char, the \0
+// also used is_null as temp variable for other purposes
 int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 {
 	char	*result_str;
@@ -47,6 +49,7 @@ int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 	return (ind);
 }
 
+// for spesific input, ("%c", 0) that need to print a single \0
 static int	pr_null(const char *format, int ind, int field_width)
 {
 	int	format_width;
@@ -72,6 +75,7 @@ static int	pr_null(const char *format, int ind, int field_width)
 	return (result);
 }
 
+// print the result string
 static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 {
 	int	format_width;
@@ -97,6 +101,7 @@ static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 	return (result);
 }
 
+// align the result that want to print properly
 static void	print_alignment(char *result_str, int len, char c, int is_left)
 {
 	int	i;
