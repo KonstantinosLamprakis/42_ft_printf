@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 06:24:37 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 06:38:21 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,13 @@ char	*print_str(va_list par_list);
 char	*print_i_d(va_list par_list);
 int		print_percent(const char *format, int index);
 int		is_included(const char *str, char c);
+// declarations of ft_utils_bonus.c
+int	is_minus_f(const char *format, int index);
+int	is_zero_padding(const char *format, int index);
+// declarations of ft_utils_2_bonus.c
+int	is_plus_f(const char *format, int index);
+int	is_space_f(const char *format, int index);
+int	is_hash_f(const char *format, int index);
+int	is_full_stop(const char *format, int index, int *f_width, va_list par_list);
+int	get_field_width(const char *format, int index, va_list par_list);
 #endif

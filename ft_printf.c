@@ -6,14 +6,12 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 14:57:22 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 07:21:08 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: check the return value of printf
-// TODO: \num
-// return -1 if write failed
 // cc *.c *.h */*.c */*.h && ./a.out | cat -e
+// check norminette with table asigments "0123456789"
 
 #include "ft_printf.h"
 
@@ -52,12 +50,9 @@ int	ft_printf(const char *format, ...)
 
 // 	b = 0;
 // 	c = 0;
-// 	c = ft_printf(" %p %p\n", LONG_MIN, LONG_MAX);
-// 	b = printf(" %p %p\n", LONG_MIN, LONG_MAX);
-// 	printf("-%d %d-\n", c , b);
+// 	ft_printf("%012.*d", 4, 8);
+// 	// c = ft_printf(" %p %p\n", LONG_MIN, LONG_MAX);
+// 	// b = printf(" %p %p\n", LONG_MIN, LONG_MAX);
+// 	// printf("-%d %d-\n", c , b);
 // 	// system("leaks a.out");
 // }
-
-// 30:     TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
-// 32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
-// 33:     TEST(9, print(" %p %p ", 0, 0));
