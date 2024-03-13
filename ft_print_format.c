@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 15:12:32 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:47:57 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*get_result(const char *format, int index, va_list par_list);
 static int	pr_res(char *res_str, const char *format, int ind, int field_width);
 static void	print_alignment(char *result_str, int len, char c, int is_left);
 static int	pr_null(const char *format, int ind, int field_width);
+static int	not_fstop(const char *format, int ind);
 
 // ind = current index on format, start from first char after %
 // return the index of last character that got processed
@@ -89,7 +90,7 @@ static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 	{
 		if (is_minus_f(format, ind))
 			print_alignment(res_str, field_width - format_width, ' ', 1);
-		else if (is_zero_padding(format, ind))
+		else if (is_zero_padding(format, ind) && not_fstop(format, ind))
 			print_alignment(res_str, field_width - format_width, '0', 0);
 		else
 			print_alignment(res_str, field_width - format_width, ' ', 0);
@@ -99,6 +100,17 @@ static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 		ft_putstr_fd(res_str, 1);
 	result += format_width;
 	return (result);
+}
+
+static int	not_fstop(const char *format, int ind)
+{
+	while (is_included("cspdiuxX%", format[ind]) == -1)
+	{
+		if (format[ind] == '.')
+			return(0);
+		ind++;
+	}
+	return (1);
 }
 
 // align the result that want to print properly
