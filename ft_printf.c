@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:09:06 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:11:58 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ int	ft_printf(const char *format, ...)
 // b = printf("%08.4d\n", -14);
 // . adds zeros in front of number like d i u not spase
 // . put after the zeros the minus while field_width before
-// . ensure the number to have the exact size without the sign, not the whole thing
-// field width ensures the minus is before space, or after zero if its a number
+// . ensure the number to have the exact size without the sign,
+	// not the whole thing
+// field width ensures the minus is before space
+	// or after zero if its a number
 // ("%.s", NULL) -> should print only "" not (null)
 // free memory of substr at atoi at bonus 2 at get_field_width
-// printf("\\!/%45.2s\\!/\n", NULL); just put this on print_s(return (ft_substr("(null)", 0, f_width));)
