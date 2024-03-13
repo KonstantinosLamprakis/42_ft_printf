@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 10:31:30 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:10:01 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void	print_alignment(char *result_str, int len, char c, int is_left)
 		if (result_str)
 			ft_putstr_fd(result_str, 1);
 		else
-			write(1, "0", 1);
+			write(1, "", 1);
 		while (i++ < len)
 			ft_putchar_fd(c, 1);
 	}
@@ -118,7 +118,7 @@ static void	print_alignment(char *result_str, int len, char c, int is_left)
 		if (result_str)
 			ft_putstr_fd(result_str, 1);
 		else
-			write(1, "0", 1);
+			write(1, "", 1);
 	}
 }
 
