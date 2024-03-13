@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:11:10 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:17:17 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ char	*print_i_d(va_list par_list, const char *format, int index)
 	if (num < 0 || !(is_plus_f(format, index) || is_space_f(format, index)))
 		return (ft_itoa(num));
 	temp = ft_itoa(num);
+	if (!temp)
+		return (NULL);
 	if (is_plus_f(format, index))
 		result = ft_strjoin("+", temp);
 	else
 		result = ft_strjoin(" ", temp);
-	if (temp)
-		free(temp);
+	free(temp);
 	return (result);
 }
 

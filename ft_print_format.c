@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:10:01 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:29:44 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 		*ch_num += pr_res(result_str, format, ind, field_width);
 	while (is_included("cspdiuxX%", format[ind]) == -1)
 		ind++;
+	if (result_str)
+		free(result_str);
 	return (ind);
 }
 
@@ -92,8 +94,6 @@ static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 	else
 		ft_putstr_fd(res_str, 1);
 	result += format_width;
-	if (res_str)
-		free(res_str);
 	return (result);
 }
 

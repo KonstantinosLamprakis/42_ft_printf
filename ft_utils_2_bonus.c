@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 06:34:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:54:25 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:28:21 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ int	get_field_width(const char *format, int index, va_list par_list)
 
 int	is_fstop(const char *format, int index, int *f_width, va_list par_list)
 {
-	int	is_f_stop;
 	int	temp;
+	char	*temp_str;
 
-	is_f_stop = 0;
 	*f_width = -1;
 	while (is_included("cspdiuxX%", format[index]) == -1)
 	{
@@ -57,7 +56,12 @@ int	is_fstop(const char *format, int index, int *f_width, va_list par_list)
 			while (format[temp] >= '0' && format[temp] <= '9')
 				temp++;
 			if (index < temp)
-				*f_width = ft_atoi(ft_substr(format, index, index - temp));
+			{
+				temp_str = ft_substr(format, index, index - temp);
+				*f_width = ft_atoi(temp_str);
+				if (temp_str)
+					free(temp_str);
+			}
 			else if (format[temp] == '*')
 				*f_width = va_arg(par_list, int);
 			if (*f_width == -1)
