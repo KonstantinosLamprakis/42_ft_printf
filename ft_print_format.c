@@ -6,13 +6,13 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 16:47:57 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:22:11 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*get_result(const char *format, int index, va_list par_list);
+static char	*get_result(const char *format, int index, va_list par_list, int *flag);
 static int	pr_res(char *res_str, const char *format, int ind, int field_width);
 static void	print_alignment(char *result_str, int len, char c, int is_left);
 static int	pr_null(const char *format, int ind, int field_width);
@@ -21,27 +21,33 @@ static int	not_fstop(const char *format, int ind);
 // ind = current index on format, start from first char after %
 // return the index of last character that got processed
 // ch_num keep score of how many character printed
-// is_null for spesific case that need to print only one char, the \0
-// also used is_null as temp variable for other purposes
+// flag for spesific case that need to print only one char, the \0
+// also to mark if the result is a number
+// also used flag as temp variable for other purposes
 int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 {
 	char	*result_str;
-	int		is_null;
+	int		flag;
 	int		field_width;
 
 	field_width = get_field_width(format, ind, par_l);
-	is_null = ind;
-	while (is_included("cspdiuxX%", format[is_null]) == -1)
-		is_null++;
-	if (format[is_null] == 'c')
+	flag = ind;
+	while (is_included("cspdiuxX%", format[flag]) == -1)
+		flag++;
+	if (format[flag] == 'c')
 	{
-		result_str = print_char(par_l, &is_null);
-		if (is_null == -1)
+		result_str = print_char(par_l, &flag);
+		if (flag == -1)
 			*ch_num += pr_null(format, ind, field_width);
 	}
 	else
-		result_str = get_result(format, ind, par_l);
-	if (result_str)
+		result_str = get_result(format, ind, par_l, &flag);
+	if (result_str && flag && result_str[0] == '-')
+	{
+		ft_putchar_fd('-', 1);
+		*ch_num += pr_res(result_str + 1, format, ind, field_width - 1) + 1;
+	}
+	else if (result_str)
 		*ch_num += pr_res(result_str, format, ind, field_width);
 	while (is_included("cspdiuxX%", format[ind]) == -1)
 		ind++;
@@ -139,11 +145,12 @@ static void	print_alignment(char *result_str, int len, char c, int is_left)
 	}
 }
 
-static char	*get_result(const char *format, int index, va_list par_list)
+static char	*get_result(const char *format, int index, va_list par_list, int *flag)
 {
 	int	temp_ind;
 
 	temp_ind = index;
+	*flag = 0;
 	while (is_included("cspdiuxX%", format[temp_ind]) == -1)
 		temp_ind++;
 	if (format[temp_ind] == 's')
@@ -153,7 +160,10 @@ static char	*get_result(const char *format, int index, va_list par_list)
 	else if (format[temp_ind] == 'p')
 		return (print_ptr(par_list));
 	else if (format[temp_ind] == 'i' || format[temp_ind] == 'd')
+	{
+		*flag = 1;
 		return (print_i_d(par_list, format, index));
+	}
 	else if (format[temp_ind] == 'u')
 		return (print_u(par_list));
 	else if (format[temp_ind] == 'x' || format[temp_ind] == 'X')
