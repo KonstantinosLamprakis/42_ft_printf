@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:20:26 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:25:30 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	str_revert(char *str);
 // declarations of ft_utils_1.c
 int		print_char(const char *format, int index, va_list par_list);
 char	*print_str(va_list par_list);
-char	*print_i_d(va_list par_list);
+char	*print_i_d(va_list par_list, const char *format, int index);
 int		print_percent(const char *format, int index);
 int		is_included(const char *str, char c);
 // declarations of ft_utils_bonus.c

@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:19:56 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:17:26 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:33:37 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*print_ptr(va_list par_list)
 	get_hex(nbr, 0, temp, 0);
 	str_revert(temp);
 	result = ft_strjoin("0x", temp);
-	free(temp);
+	if (temp)
+		free(temp);
 	return (result);
 }
 
@@ -74,6 +75,7 @@ char	*print_x(va_list par_list, char c, int is_hash)
 		result = ft_strjoin("0x", temp);
 	else
 		result = ft_strjoin("0X", temp);
-	free(temp);
+	if (temp)
+		free(temp);
 	return (result);
 }
