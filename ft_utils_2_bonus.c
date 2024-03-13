@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 06:34:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:21:17 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:44:24 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	is_fstop(const char *format, int index, int *f_width, va_list par_list)
 				*f_width = ft_atoi(ft_substr(format, index, index - temp));
 			else if (format[temp] == '*')
 				*f_width = va_arg(par_list, int);
+			if (*f_width == -1)
+				*f_width = 0;
 			return (1);
 		}
 		index++;

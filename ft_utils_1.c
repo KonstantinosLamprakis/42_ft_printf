@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:33:10 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:42:53 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ int	print_char(const char *format, int index, va_list par_list)
 	return (0);
 }
 
-char	*print_str(va_list par_list)
+char	*print_str(va_list par_list, const char *format, int index)
 {
 	char	*result;
+	int		f_width;
+	int		is_full_stop;
 
+	f_width = -1;
+	is_full_stop = is_fstop(format, index, &f_width, par_list);
 	result = va_arg(par_list, char *);
 	if (!result)
 		return (ft_strdup("(null)"));
+	if (is_full_stop)
+		return (ft_substr(result, 0, f_width));
 	return (ft_strdup(result));
 }
 
