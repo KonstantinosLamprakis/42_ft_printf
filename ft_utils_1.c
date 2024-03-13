@@ -6,35 +6,41 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:42:53 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:15:13 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // if is % just print it and return
-int	print_percent(const char *format, int index)
+char	*print_percent(void)
 {
-	while (is_included("cspdiuxX%", format[index]) == -1)
-		index++;
-	if (format[index] == '%')
-	{
-		ft_putchar_fd('%', 1);
-		return (1);
-	}
-	return (0);
+	char	*result;
+
+	result = malloc(2 * sizeof(char));
+	if (!result)
+		return (NULL);
+	result[0] = '%';
+	result[1] = '\0';
+	return (result);
 }
 
-int	print_char(const char *format, int index, va_list par_list)
+char	*print_char(va_list par_list, int *is_null)
 {
-	while (is_included("cspdiuxX%", format[index]) == -1)
-		index++;
-	if (format[index] == 'c')
+	char	*result;
+
+	result = malloc(2 * sizeof(char));
+	if (!result)
+		return (NULL);
+	result[0] = va_arg(par_list, int);
+	result[1] = '\0';
+	if (result[0] == '\0')
 	{
-		ft_putchar_fd(va_arg(par_list, int), 1);
-		return (1);
+		*is_null = -1;
+		free(result);
+		return (NULL);
 	}
-	return (0);
+	return (result);
 }
 
 char	*print_str(va_list par_list, const char *format, int index)

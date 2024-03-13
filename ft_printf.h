@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 08:37:24 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 09:53:03 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int		count_digits(t_u_long num, int base);
 void	get_hex(t_u_long nbr, int is_up_case, char *result, int is_int);
 void	str_revert(char *str);
 // declarations of ft_utils_1.c
-int		print_char(const char *format, int index, va_list par_list);
+char	*print_char(va_list par_list, int *is_null);
 char	*print_str(va_list par_list, const char *format, int index);
 char	*print_i_d(va_list par_list, const char *format, int index);
-int		print_percent(const char *format, int index);
+char	*print_percent(void);
 int		is_included(const char *str, char c);
 // declarations of ft_utils_bonus.c
 int		is_minus_f(const char *format, int index);
