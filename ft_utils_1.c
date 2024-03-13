@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 13:17:17 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:59:26 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*print_str(va_list par_list, const char *format, int index)
 
 	f_width = -1;
 	is_full_stop = is_fstop(format, index, &f_width, par_list);
+	if(f_width == 0)
+		return (NULL);
 	result = va_arg(par_list, char *);
 	if (!result)
 		return (ft_substr("(null)", 0, f_width));
