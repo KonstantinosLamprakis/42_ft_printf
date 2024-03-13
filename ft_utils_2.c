@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:19:56 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 19:22:21 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:17:26 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,29 @@ char	*print_ptr(va_list par_list)
 	return (result);
 }
 
-char	*print_x(va_list par_list, char c)
+char	*print_x(va_list par_list, char c, int is_hash)
 {
 	int		ch_num;
 	char	*result;
 	int		nbr;
+	char	*temp;
 
 	nbr = va_arg(par_list, ssize_t);
 	ch_num = (count_digits(nbr, 16));
-	result = malloc((count_digits(nbr, 16) + 1) * sizeof(char));
-	if (!result)
+	temp = malloc((count_digits(nbr, 16) + 1) * sizeof(char));
+	if (!temp)
 		return (NULL);
 	if (c == 'x')
-		get_hex(nbr, 0, result, 1);
+		get_hex(nbr, 0, temp, 1);
 	else
-		get_hex(nbr, 1, result, 1);
-	str_revert(result);
+		get_hex(nbr, 1, temp, 1);
+	str_revert(temp);
+	if (!is_hash)
+		return (temp);
+	if (c == 'x')
+		result = ft_strjoin("0x", temp);
+	else
+		result = ft_strjoin("0X", temp);
+	free(temp);
 	return (result);
 }
