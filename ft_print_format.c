@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 17:22:11 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:31:27 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ static char	*get_result(const char *format, int index, va_list par_list, int *fl
 		return (print_i_d(par_list, format, index));
 	}
 	else if (format[temp_ind] == 'u')
-		return (print_u(par_list));
+		return (print_u(par_list, format, index));
 	else if (format[temp_ind] == 'x' || format[temp_ind] == 'X')
 		return (print_x(par_list, format[temp_ind], is_hash_f(format, index)));
 	return (NULL);

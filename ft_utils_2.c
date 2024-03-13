@@ -6,18 +6,21 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:19:56 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 13:19:41 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:30:34 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*print_u(va_list par_list)
+char	*print_u(va_list par_list, const char *format, int index)
 {
 	int		ch_num;
 	char	*result;
 	int		nbr;
+	char	*temp;
+	int		f_width;
 
+	is_fstop(format, index, &f_width, par_list);
 	nbr = va_arg(par_list, int);
 	ch_num = (count_digits(nbr, 10));
 	result = malloc((count_digits(nbr, 10) + 1) * sizeof(char));
@@ -25,6 +28,16 @@ char	*print_u(va_list par_list)
 		return (NULL);
 	get_hex(nbr, 10, result, 1);
 	str_revert(result);
+	if (!(is_plus_f(format, index) || is_space_f(format, index)))
+		return (get_percision(f_width, result));
+	temp = get_percision(f_width, result);
+	if (!temp)
+		return (NULL);
+	if (is_plus_f(format, index))
+		result = ft_strjoin("+", temp);
+	else
+		result = ft_strjoin(" ", temp);
+	free(temp);
 	return (result);
 }
 
