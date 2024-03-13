@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 13:46:33 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:54:39 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,49 +34,23 @@ int	ft_printf(const char *format, ...)
 			ft_putchar_fd(format[i], 1);
 			printed_num++;
 		}
-		if (i == -1)
-			return (-1);
 		i++;
 	}
 	va_end(par_list);
 	return (printed_num);
 }
 
-#include <limits.h>
-int	main(void)
-{
-	int b, c;
-	char *test = "this is me";
+// #include <limits.h>
+// int	main(void)
+// {
+// 	int b, c;
+// 	char *test = "this is me";
 
-	b = 0;
-	c = 0;
-	// printf("%15.*s", 5, "this is a test");
-	// printf("% d", 5);
-	// printf("%3d", 1243);
+// 	b = 0;
+// 	c = 0;
+// 	// c = ft_printf("%010.2i\n", -8473);
+// 	b = printf("%012.10i\n", -8473);
 
-	c = ft_printf("%010.2i\n", -8473);
-	b = printf("%010.2i\n", -8473);
-
-	printf("-%d %d-\n", c , b);
-	// system("leaks a.out");
-}
-
-// b = printf("%08.4d\n", -14);
-
-// c = ft_printf(">------------<%58.24d>------------<\n", 0);
-// b = printf(">------------<%58.24d>------------<\n", 0);
-
-// c = ft_printf("%08.3i\n", -8473);
-// b = printf("%08.3i\n", -8473);
-
-// . adds zeros in front of number like d i u not spase
-// . put after the zeros the minus while field_width before
-// . ensure the number to have the exact size without the sign,
-	// not the whole thing
-// field width ensures the minus is before space
-	// or after zero if its a number
-// ("%.s", NULL) -> should print only "" not (null)
-	// if negative number, zero go between minus and number until reach width..if . exists overatis 0 with " "
-// if is ' ' filled before '-' on negative while if is '0' filled after the minus
-// pressision always filled with zeros no matter what
-
+// 	printf("-%d %d-\n", c , b);
+// 	// system("leaks a.out");
+// }
