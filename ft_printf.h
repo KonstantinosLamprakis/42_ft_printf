@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:26:55 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/12 19:22:21 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 06:24:37 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef unsigned long long	t_u_long;
 int		ft_printf(const char *format, ...);
 // declarations of ft_print_format.c
 int		print_format(const char *format, int ind, va_list par_l, int *ch_num);
-// declarations of ft_get_result.c
-char	*get_result(const char *format, int index, va_list par_list);
 // declarations of ft_utils_2.c
 char	*print_x(va_list par_list, char c);
 char	*print_ptr(va_list par_list);
