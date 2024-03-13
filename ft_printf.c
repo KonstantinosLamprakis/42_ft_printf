@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 12:11:58 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:20:10 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,3 @@ int	ft_printf(const char *format, ...)
 // field width ensures the minus is before space
 	// or after zero if its a number
 // ("%.s", NULL) -> should print only "" not (null)
-// free memory of substr at atoi at bonus 2 at get_field_width
