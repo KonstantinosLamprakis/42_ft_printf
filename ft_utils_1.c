@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:03:06 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 16:36:32 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:41:16 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,40 @@ char	*get_percision(int f_width, char *num)
 	result = ft_strjoin(zeros, num + sign);
 	free(zeros);
 	free(num);
+	return (result);
+}
+
+char	*get_gen_perc(int f_width, char *input, int is_neg, int is_num)
+{
+	int		sign;
+	int		i;
+	char	*zeros;
+	char	*result;
+	char	c;
+
+	c = ' ';
+	if (is_num)
+		c = '0';
+	if (!input)
+		return (input);
+	sign = 0;
+	if (is_neg)
+		sign = input[0] == '-';
+	i = f_width - (ft_strlen(input) - sign);
+	if (i <= 0)
+		return (input);
+	zeros = malloc((i + 1 + sign) * sizeof(char));
+	if (!zeros)
+		return (NULL);
+	if (sign)
+		zeros[0] = '-';
+	zeros[i + sign] = '\0';
+	i += sign - 1;
+	while (i >= sign)
+		zeros[i--] = c;
+	result = ft_strjoin(zeros, input + sign);
+	free(zeros);
+	free(input);
 	return (result);
 }
 

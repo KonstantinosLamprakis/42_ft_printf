@@ -6,7 +6,7 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:52:18 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/13 17:31:27 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/14 06:38:27 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	print_format(const char *format, int ind, va_list par_l, int *ch_num)
 		result_str = print_char(par_l, &flag);
 		if (flag == -1)
 			*ch_num += pr_null(format, ind, field_width);
+		flag = 0;
 	}
 	else
 		result_str = get_result(format, ind, par_l, &flag);
@@ -91,7 +92,9 @@ static int	pr_res(char *res_str, const char *format, int ind, int field_width)
 
 	result = 0;
 	i = 0;
-	format_width = ft_strlen(res_str);
+	format_width = 0;
+	if (res_str)
+		format_width = ft_strlen(res_str);
 	if (field_width > format_width)
 	{
 		if (is_minus_f(format, ind))
