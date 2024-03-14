@@ -1,7 +1,7 @@
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_printf.c ft_print_format.c ft_get_hex.c ft_utils_1.c ft_utils_2.c ft_utils_bonus.c ft_utils_2_bonus.c
+SRCS = ft_printf.c ft_print_format.c ft_get_hex.c ft_utils_1.c ft_utils_2.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -10,8 +10,6 @@ HEADER = ft_printf.h
 NAME = libftprintf.a
 
 all: $(NAME)
-
-bonus: all
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft

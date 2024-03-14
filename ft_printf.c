@@ -6,12 +6,14 @@
 /*   By: klamprak <klamprak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:45:41 by klamprak          #+#    #+#             */
-/*   Updated: 2024/03/14 06:34:09 by klamprak         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:57:22 by klamprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: check the return value of printf
+// TODO: \num
+// return -1 if write failed
 // cc *.c *.h */*.c */*.h && ./a.out | cat -e
-// check norminette with table asigments "0123456789"
 
 #include "ft_printf.h"
 
@@ -34,6 +36,8 @@ int	ft_printf(const char *format, ...)
 			ft_putchar_fd(format[i], 1);
 			printed_num++;
 		}
+		if (i == -1)
+			return (-1);
 		i++;
 	}
 	va_end(par_list);
@@ -44,12 +48,16 @@ int	ft_printf(const char *format, ...)
 // int	main(void)
 // {
 // 	int b, c;
+// 	char *test = "this is me";
 
 // 	b = 0;
 // 	c = 0;
-// 	c = ft_printf("%3.s\n", NULL);
-// 	b = printf("%3.s\n", NULL);
-
+// 	c = ft_printf(" %p %p\n", LONG_MIN, LONG_MAX);
+// 	b = printf(" %p %p\n", LONG_MIN, LONG_MAX);
 // 	printf("-%d %d-\n", c , b);
 // 	// system("leaks a.out");
 // }
+
+// 30:     TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
+// 32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
+// 33:     TEST(9, print(" %p %p ", 0, 0));
